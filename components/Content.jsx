@@ -1,11 +1,16 @@
 'use client'
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import data from '@/data/data.json'
 
 export const Content = () => {
     const [jobDescription, setJobDescription] = useState('');
-    const [coverLetter, setCoverLetter] = useState(data.coverLetter);
-    const [instruction, setInstruction] = useState(data.instruction);
+    const [coverLetter, setCoverLetter] = useState('');
+    const [instruction, setInstruction] = useState('');
+
+    useEffect(() => {
+        setCoverLetter(data.coverLetter);
+        setInstruction(data.instruction);
+    }, []);
 
     const divRef = useRef(null);
 
@@ -36,14 +41,14 @@ export const Content = () => {
 
                 <textarea
                     className="w-full h-24 md:h-32 lg:h-40 xl:h-48 2xl:h-56 resize-none border rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-300 text-white bg-[#22272c]"
-                    onChange={(e) => setJobDescription(e.target.value)}
+                    onChange={(e) => setCoverLetter(e.target.value)}
                     value={coverLetter}
                 ></textarea>
             </div>
 
             <textarea
                 className="w-full h-20 md:h-32 lg:h-20 xl:h-20 2xl:h-20 resize-none border rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-300 mt-3 text-white bg-[#22272c]"
-                onChange={(e) => setJobDescription(e.target.value)}
+                onChange={(e) => setInstruction(e.target.value)}
                 value={instruction}
             ></textarea>
 
